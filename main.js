@@ -30,6 +30,7 @@ var l2 = null;
 var lastnum = null;
 var add = true;
 var lastresult = null;
+let changed = false;
 
 function licz(znak) {
     if (znak == "*") return l1 * l2;
@@ -41,29 +42,35 @@ function licz(znak) {
 
 document.querySelector("#plus").addEventListener("click", function () {
     if (input.value != null) {
-        if (selected != "+") {
+        if (selected != "+" && selected != null) {
             combo = false;
-            l1 = null;
-            l2 = null;
-            lastresult = null;
+            if (l1 != null && l2 != null) {
+                input.value = licz(selected);
+                selected = "+";
+                changed = true;
+            }
+
         }
         if (l1 == null) {
             l1 = input.value;
             add = false;
             selected = "+"
-        } else if (selected == "+") {
-            if (combo == true) {
+        } else if (selected != null) {
+            if (combo == true || changed == true) {
+                changed = false;
                 if (lastresult != null && input.value != lastresult) {
                     l1 = lastresult;
                     l2 = input.value;
-                } else l1 = input.value;
-                input.value = licz(selected);
-                add = false;
-                lastresult = input.value;
+                } else {
+                    l1 = input.value;
+                    input.value = licz(selected);
+                    add = false;
+                    lastresult = input.value;
+                }
 
             } else {
                 if (lastresult != null) {
-                    l2 = l1;
+                    l1 = l1;
                     l1 = lastresult;
                 } else l2 = input.value;
                 input.value = licz(selected);
@@ -84,29 +91,35 @@ document.querySelector("#kropka").addEventListener("click", function () {
 
 document.querySelector("#razy").addEventListener("click", function () {
     if (input.value != null) {
-        if (selected != "*") {
+        if (selected != "*" && selected != null) {
             combo = false;
-            l1 = null;
-            l2 = null;
-            lastresult = null;
+            if (l1 != null && l2 != null) {
+                input.value = licz(selected);
+                selected = "*";
+                changed = true;
+            }
+
         }
         if (l1 == null) {
             l1 = input.value;
             add = false;
             selected = "*"
-        } else if (selected == "*") {
-            if (combo == true) {
+        } else if (selected != null) {
+            if (combo == true || changed == true) {
+                changed = false;
                 if (lastresult != null && input.value != lastresult) {
                     l1 = lastresult;
                     l2 = input.value;
-                } else l1 = input.value;
-                input.value = licz(selected);
-                add = false;
-                lastresult = input.value;
+                } else {
+                    l1 = input.value;
+                    input.value = licz(selected);
+                    add = false;
+                    lastresult = input.value;
+                }
 
             } else {
                 if (lastresult != null) {
-                    l2 = l1;
+                    l1 = l1;
                     l1 = lastresult;
                 } else l2 = input.value;
                 input.value = licz(selected);
@@ -121,29 +134,35 @@ document.querySelector("#razy").addEventListener("click", function () {
 var combo = false;
 document.querySelector("#minus").addEventListener("click", function () {
     if (input.value != null) {
-        if (selected != "-") {
+        if (selected != "-" && selected != null) {
             combo = false;
-            l1 = null;
-            l2 = null;
-            lastresult = null;
+            if (l1 != null && l2 != null) {
+                input.value = licz(selected);
+                selected = "-";
+                changed = true;
+            }
+
         }
         if (l1 == null) {
             l1 = input.value;
             add = false;
             selected = "-"
-        } else if (selected == "-") {
-            if (combo == true) {
+        } else if (selected != null) {
+            if (combo == true || changed == true) {
+                changed = false;
                 if (lastresult != null && input.value != lastresult) {
                     l1 = lastresult;
                     l2 = input.value;
-                } else l1 = input.value;
-                input.value = licz(selected);
-                add = false;
-                lastresult = input.value;
+                } else {
+                    l1 = input.value;
+                    input.value = licz(selected);
+                    add = false;
+                    lastresult = input.value;
+                }
 
             } else {
                 if (lastresult != null) {
-                    l2 = l1;
+                    l1 = l1;
                     l1 = lastresult;
                 } else l2 = input.value;
                 input.value = licz(selected);
@@ -158,29 +177,35 @@ document.querySelector("#minus").addEventListener("click", function () {
 
 document.querySelector("#dziel").addEventListener("click", function () {
     if (input.value != null) {
-        if (selected != "/") {
+        if (selected != "/" && selected != null) {
             combo = false;
-            l1 = null;
-            l2 = null;
-            lastresult = null;
+            if (l1 != null && l2 != null) {
+                input.value = licz(selected);
+                selected = "/";
+                changed = true;
+            }
+
         }
         if (l1 == null) {
             l1 = input.value;
             add = false;
             selected = "/"
-        } else if (selected == "/") {
-            if (combo == true) {
+        } else if (selected != null) {
+            if (combo == true || changed == true) {
+                changed = false;
                 if (lastresult != null && input.value != lastresult) {
                     l1 = lastresult;
                     l2 = input.value;
-                } else l1 = input.value;
-                input.value = licz(selected);
-                add = false;
-                lastresult = input.value;
+                } else {
+                    l1 = input.value;
+                    input.value = licz(selected);
+                    add = false;
+                    lastresult = input.value;
+                }
 
             } else {
                 if (lastresult != null) {
-                    l2 = l1;
+                    l1 = l1;
                     l1 = lastresult;
                 } else l2 = input.value;
                 input.value = licz(selected);
@@ -191,14 +216,17 @@ document.querySelector("#dziel").addEventListener("click", function () {
         }
 
     }
-
-    });
+});
 
 document.querySelector("#sqrt").addEventListener("click", function () {
 
     if (input.value != null) {
         if (selected != "sqrt") {
-            l1 = null;
+            if (l1 != null && l2 != null) {
+                input.value = licz(selected);
+                selected = "sqrt";
+            }
+            lastresult = null;
             l2 = null;
         }
         l1 = input.value;
@@ -218,26 +246,26 @@ document.querySelector("#off").addEventListener("click", function () {
 
 document.querySelector("#rowna").addEventListener("click", function () {
     if (l1 != null && selected != null) {
-            if (combo == true) {
-                if (lastresult != null && input.value != lastresult) {
-                    l1 = lastresult;
-                    l2 = input.value;
-                } else l1 = input.value;
-                input.value = licz(selected);
-                add = false;
-                lastresult = input.value;
+        if (combo == true) {
+            if (lastresult != null && input.value != lastresult) {
+                l1 = lastresult;
+                l2 = input.value;
+            } else l1 = input.value;
+            input.value = licz(selected);
+            add = false;
+            lastresult = input.value;
 
-            } else {
-                if (lastresult != null) {
-                    l2 = l1;
-                    l1 = lastresult;
-                } else l2 = input.value;
-                input.value = licz(selected);
-                combo = true;
-                add = false;
-                lastresult = input.value;
-            }
+        } else {
+            if (lastresult != null) {
+                l2 = l1;
+                l1 = lastresult;
+            } else l2 = input.value;
+            input.value = licz(selected);
+            combo = true;
+            add = false;
+            lastresult = input.value;
         }
+    }
 
 });
 
@@ -376,7 +404,7 @@ document.querySelector("html").addEventListener("keydown", function (event) {
                     input.value = licz(selected);
                     add = false;
                     lastresult = input.value;
-    
+
                 } else {
                     if (lastresult != null) {
                         l2 = l1;
@@ -388,7 +416,7 @@ document.querySelector("html").addEventListener("keydown", function (event) {
                     lastresult = input.value;
                 }
             }
-    
+
         }
     }
     if (event.key == "-") {
@@ -413,7 +441,7 @@ document.querySelector("html").addEventListener("keydown", function (event) {
                     input.value = licz(selected);
                     add = false;
                     lastresult = input.value;
-    
+
                 } else {
                     if (lastresult != null) {
                         l2 = l1;
@@ -425,7 +453,7 @@ document.querySelector("html").addEventListener("keydown", function (event) {
                     lastresult = input.value;
                 }
             }
-    
+
         }
     }
     if (event.key == "/") {
@@ -449,7 +477,7 @@ document.querySelector("html").addEventListener("keydown", function (event) {
                     input.value = licz(selected);
                     add = false;
                     lastresult = input.value;
-    
+
                 } else {
                     if (lastresult != null) {
                         l2 = l1;
@@ -461,7 +489,7 @@ document.querySelector("html").addEventListener("keydown", function (event) {
                     lastresult = input.value;
                 }
             }
-    
+
         }
     }
     if (event.key == "*") {
@@ -486,7 +514,7 @@ document.querySelector("html").addEventListener("keydown", function (event) {
                     input.value = licz(selected);
                     add = false;
                     lastresult = input.value;
-    
+
                 } else {
                     if (lastresult != null) {
                         l2 = l1;
@@ -498,7 +526,7 @@ document.querySelector("html").addEventListener("keydown", function (event) {
                     lastresult = input.value;
                 }
             }
-    
+
         }
     }
     if (event.key == ".") {
